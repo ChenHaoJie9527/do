@@ -39,6 +39,7 @@ describe('to() - Async error handling', () => {
     const [error, result] = await to(() => failingAsync());
 
     expect(error).toBeInstanceOf(Error);
+    console.log('error', error);
     expect(error?.message).toBe('Async operation failed');
     expect(result).toBeUndefined();
   });
@@ -71,9 +72,9 @@ describe('to() - Async error handling', () => {
     const [error1, user1] = await to(() => fetchUser(1));
     expect(error1).toBeNull();
     expect(user1).toEqual({
-      id: 1,
       name: 'User 1',
       email: 'user1@example.com',
+      id: 1,
     });
 
     // Error case

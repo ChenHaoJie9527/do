@@ -215,7 +215,7 @@ pnpm install
 ### Run tests
 
 ```bash 
-pnpm test 
+pnpm test:watch 
 ```
 
 ### Build the library

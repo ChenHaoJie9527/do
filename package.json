@@ -16,13 +16,12 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsup src/index.ts --format cjs,esm --dts",
-    "dev": "tsup src/index.ts --format cjs,esm --dts --watch",
-    "test": "vitest",
     "test:watch": "vitest --watch",
     "lint": "biome check src/",
     "format": "biome format --write .",
-    "typecheck": "tsc --noEmit"
+    "knip": "knip",
+    "build": "tsup",
+    "prepublishOnly": "pnpm run lint && pnpm run knip && pnpm run build"
   },
   "keywords": [
     "async",
