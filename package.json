@@ -1,0 +1,47 @@
+{
+  "name": "do",
+  "version": "1.0.0",
+  "description": "A utility library for elegant async/await error handling inspired by Go's error handling pattern",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs,esm --dts",
+    "dev": "tsup src/index.ts --format cjs,esm --dts --watch",
+    "test": "vitest",
+    "test:watch": "vitest --watch",
+    "lint": "biome check src/",
+    "format": "biome format --write .",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "async",
+    "await",
+    "error-handling",
+    "promise",
+    "go-style",
+    "typescript",
+    "javascript"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@biomejs/biome": "2.1.2",
+    "husky": "^9.1.7",
+    "knip": "^5.61.3",
+    "tsup": "^8.5.0",
+    "typescript": "^5.8.3",
+    "ultracite": "5.0.39",
+    "vitest": "^3.2.4"
+  }
+}
