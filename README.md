@@ -1,34 +1,34 @@
 # do
 
-一个优雅的 JavaScript/TypeScript 异步错误处理库，灵感来源于 Go 语言的错误处理模式。
+An elegant JavaScript/TypeScript asynchronous error handling library inspired by the Go language's error handling model.
 
-## ✨ 特性
+## ✨ Features
 
-- 🚀 **零依赖** - 轻量级，无外部依赖
-- 🎯 **类型安全** - 完整的 TypeScript 支持
-- 🔄 **Go 风格** - 返回 `[error, data]` 元组，避免 try-catch 的繁琐语法
-- 🛡️ **优雅降级** - 支持默认值，让错误处理更加优雅
-- 📦 **多格式** - 支持 CommonJS 和 ES Modules
-- 🧪 **全面测试** - 100% 测试覆盖率
+- 🚀 **Zero Dependencies** - Lightweight, no external dependencies
+- 🎯 **Type-safe** - full TypeScript support
+- 🔄 **Go style** - returns `[error, data]` tuples, avoiding the cumbersome syntax of try-catch
+- 🛡️ **Elegant Degradation** - support default values for more elegant error handling
+- 📦 **Multi-format** - support for CommonJS and ES Modules
+- 🧪 **Fully tested** - 100% test coverage
 
-## 📦 安装
+## 📦 Installation
 
 ```bash
 npm install do
-# 或
+# or
 yarn add do
-# 或
+# or
 pnpm add do
 ```
 
-## 🚀 快速开始
+## 🚀 Quick start
 
-### 基本用法
+### basic usage
 
 ```typescript
 import { to } from 'do';
 
-// 传统方式
+// traditional approach
 try {
   const user = await fetchUser(id);
   console.log(user);
@@ -36,7 +36,7 @@ try {
   console.error('Failed to fetch user:', error.message);
 }
 
-// 使用 do 库
+// Using the do Library
 const [error, user] = await to(() => fetchUser(id));
 if (error) {
   console.error('Failed to fetch user:', error.message);
@@ -45,60 +45,60 @@ if (error) {
 console.log(user);
 ```
 
-### 带默认值的错误处理
+### Error handling with default values
 
 ```typescript
 import { to } from 'do';
 
-// 如果 API 调用失败，使用默认值
+// If the API call fails, use the default
 const [error, users] = await to(() => fetchUsers(), []);
-// users 将是 [] 如果 fetchUsers() 失败
+// users will be [] if fetchUsers() fails
 
-// 带默认对象的错误处理
+// Error Handling with Default Objects
 const [error, settings] = await to(
   () => fetchUserSettings(userId),
   { theme: 'light', notifications: false }
 );
 ```
 
-## 📚 API 参考
+### 📚 API reference
 
 ### `to<T>(asyncFn, defaultValue?)`
 
-执行异步函数并返回 `[error, data]` 元组。
+Executes an asynchronous function and returns the `[error, data]` tuple.
 
-**参数：**
-- `asyncFn: (...args: any[]) => Promise<T>` - 要执行的异步函数
-- `defaultValue?: T` - 可选，当错误发生时的默认值
+** Parameters.
+- `asyncFn: (... .args: any[]) => Promise<T>` - the asynchronous function to execute
+- `defaultValue?: T` - optional, default value when an error occurs
 
-**返回：**
-- `Promise<[Error | null, T | undefined]>` - 元组，第一个元素是错误（成功时为 null），第二个元素是数据
+**Returns:**
+- `Promise<[Error | null, T | undefined]>` - tuple, the first element is the error (null on success), the second element is the data
 
-### `toSync<T>(fn, defaultValue?)`
+### `toSync<T>(fn, defaultValue?)` - the first element is the error (null on success), the second is the data
 
-同步版本的 `to` 函数，用于处理可能抛出错误的同步函数。
+Synchronized version of the `to` function for handling synchronized functions that may throw errors.
 
-**参数：**
-- `fn: () => T` - 要执行的同步函数
-- `defaultValue?: T` - 可选，当错误发生时的默认值
+**Arguments:**
+- `fn: () => T` - the synchronization function to be executed
+- `defaultValue?: T` - optional, default value when an error occurs
 
-**返回：**
-- `[Error | null, T | undefined]` - 元组
+**Returns:**
+- `[Error | null, T | undefined]` - the tuple
 
 ### `toPromise<T>(promise, defaultValue?)`
 
-直接包装 Promise 实例。
+Wraps the Promise instance directly.
 
-**参数：**
-- `promise: Promise<T>` - 要包装的 Promise
-- `defaultValue?: T` - 可选，当 Promise 拒绝时的默认值
+**Parameters:**
+- `promise: Promise<T>` - the Promise to be wrapped
+- `defaultValue?: T` - optionally, the default value when the Promise is rejected
 
-**返回：**
-- `Promise<[Error | null, T | undefined]>` - 元组
+**Returns:**
+- `Promise<[Error | null, T | undefined]>` - The tuple
 
-## 💡 使用示例
+## 💡 Usage Examples
 
-### 1. API 调用处理
+### 1. API call handling
 
 ```typescript
 import { to } from 'do';
@@ -111,7 +111,7 @@ async function loadUserProfile(userId: number) {
     { theme: 'light', notifications: false }
   );
 
-  // 即使某些操作失败，我们仍可以继续使用默认值
+  // We can continue to use the defaults even if something fails.
   return {
     user: user || { id: 0, name: 'Anonymous' },
     posts: posts || [],
@@ -120,7 +120,7 @@ async function loadUserProfile(userId: number) {
 }
 ```
 
-### 2. JSON 解析
+### 2. JSON parsing
 
 ```typescript
 import { toSync } from 'do';
@@ -137,7 +137,7 @@ function parseUserData(jsonString: string) {
 }
 ```
 
-### 3. 数据库操作
+### 3. Database operations
 
 ```typescript
 import { to } from 'do';
@@ -157,7 +157,7 @@ async function createUser(userData: UserData) {
 }
 ```
 
-### 4. 文件操作
+### 4. Documentation operations
 
 ```typescript
 import { toSync } from 'do';
@@ -180,7 +180,7 @@ function readConfigFile(path: string) {
 }
 ```
 
-### 5. 网络请求
+### 5. network request
 
 ```typescript
 import { toPromise } from 'do';
@@ -204,36 +204,36 @@ async function fetchWithTimeout(url: string, timeout = 5000) {
 }
 ```
 
-## 🔧 开发
+## 🔧 Development
 
-### 安装依赖
+### Install dependencies
 
-```bash
-pnpm install
+```bash 
+pnpm install 
 ```
 
-### 运行测试
+### Run tests
 
-```bash
-pnpm test
+```bash 
+pnpm test 
 ```
 
-### 构建库
+### Build the library
 
-```bash
-pnpm build
+```bash 
+pnpm build 
 ```
 
-### 代码格式化
+### Code formatting
 
-```bash
-pnpm format
+```bash 
+pnpm format 
 ```
 
-### 类型检查
+### Type checking
 
-```bash
-pnpm typecheck
+```bash 
+pnpm typecheck 
 ```
 
 ## 🤝 贡献
@@ -246,11 +246,11 @@ MIT License
 
 ## 🙏 致谢
 
-这个库的设计灵感来源于：
-- Go 语言的错误处理模式
-- [await-to-js](https://github.com/scopsy/await-to-js) 库
-- 社区中关于优雅错误处理的讨论
+This library was inspired by:
+- Go language's error handling model
+- [await-to-js](https://github.com/scopsy/await-to-js) Library
+- Community discussions on graceful error handling
 
 ---
 
-**让异步错误处理变得简单而优雅！** 🎉 
+** Makes asynchronous error handling simple and elegant! ** 🎉

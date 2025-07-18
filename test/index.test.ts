@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { to, toPromise, toSync } from './index';
+import { to, toPromise, toSync } from '../src/index';
 
 // Mock async functions for testing
 const successfulAsync = async (value: string): Promise<string> => {
