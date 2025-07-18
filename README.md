@@ -1,4 +1,4 @@
-# do
+# go-style-error
 
 An elegant JavaScript/TypeScript asynchronous error handling library inspired by the Go language's error handling model.
 
