@@ -14,11 +14,11 @@ An elegant JavaScript/TypeScript asynchronous error handling library inspired by
 ## 📦 Installation
 
 ```bash
-npm install do
+npm install go-style-error
 # or
-yarn add do
+yarn add go-style-error
 # or
-pnpm add do
+pnpm add go-style-error
 ```
 
 ## 🚀 Quick start
@@ -26,7 +26,7 @@ pnpm add do
 ### basic usage
 
 ```typescript
-import { to } from 'do';
+import { to } from 'go-style-error';
 
 // traditional approach
 try {
@@ -36,7 +36,7 @@ try {
   console.error('Failed to fetch user:', error.message);
 }
 
-// Using the do Library
+// Using the go-style-error Library
 const [error, user] = await to(() => fetchUser(id));
 if (error) {
   console.error('Failed to fetch user:', error.message);
@@ -48,7 +48,7 @@ console.log(user);
 ### Error handling with default values
 
 ```typescript
-import { to } from 'do';
+import { to } from 'go-style-error';
 
 // If the API call fails, use the default
 const [error, users] = await to(() => fetchUsers(), []);
@@ -59,7 +59,6 @@ const [error, settings] = await to(
   () => fetchUserSettings(userId),
   { theme: 'light', notifications: false }
 );
-```
 
 ### 📚 API reference
 
@@ -101,7 +100,7 @@ Wraps the Promise instance directly.
 ### 1. API call handling
 
 ```typescript
-import { to } from 'do';
+import { to } from 'go-style-error';
 
 async function loadUserProfile(userId: number) {
   const [userError, user] = await to(() => fetchUser(userId));
@@ -118,12 +117,11 @@ async function loadUserProfile(userId: number) {
     settings: settings || { theme: 'light', notifications: false }
   };
 }
-```
 
 ### 2. JSON parsing
 
 ```typescript
-import { toSync } from 'do';
+import { toSync } from 'go-style-error';
 
 function parseUserData(jsonString: string) {
   const [error, userData] = toSync(() => JSON.parse(jsonString), {});
@@ -135,12 +133,11 @@ function parseUserData(jsonString: string) {
   
   return userData;
 }
-```
 
 ### 3. Database operations
 
 ```typescript
-import { to } from 'do';
+import { to } from 'go-style-error';
 
 async function createUser(userData: UserData) {
   const [validationError, validatedData] = await to(() => validateUser(userData));
@@ -155,12 +152,11 @@ async function createUser(userData: UserData) {
 
   return { success: true, user };
 }
-```
 
 ### 4. Documentation operations
 
 ```typescript
-import { toSync } from 'do';
+import { toSync } from 'go-style-error';
 import fs from 'fs';
 
 function readConfigFile(path: string) {
@@ -178,12 +174,11 @@ function readConfigFile(path: string) {
 
   return config;
 }
-```
 
 ### 5. network request
 
 ```typescript
-import { toPromise } from 'do';
+import { toPromise } from 'go-style-error';
 
 async function fetchWithTimeout(url: string, timeout = 5000) {
   const controller = new AbortController();
@@ -202,7 +197,6 @@ async function fetchWithTimeout(url: string, timeout = 5000) {
 
   return data;
 }
-```
 
 ## 🔧 Development
 

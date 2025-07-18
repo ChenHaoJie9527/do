@@ -1,5 +1,5 @@
 {
-  "name": "do",
+  "name": "go-style-error",
   "version": "1.0.0",
   "description": "A utility library for elegant async/await error handling inspired by Go's error handling pattern",
   "main": "dist/index.js",
